@@ -7,7 +7,7 @@ version.index = which(libpath == "Versions") + 1
 this.version = libpath[version.index]
 all.versions = list.files(paste(libpath[1:(version.index - 1)], collapse = sep))
 all.version.numbers = sort(as.numeric(all.versions), decreasing = T)
-last.version = all.versions[which(all.version.numbers < as.numeric(this.version))[1]]
+last.version = all.version.numbers[which(all.version.numbers < as.numeric(this.version))[1]]
 last.library = libpath
 last.library[version.index] = last.version
 last.library = paste(last.library, collapse = sep)
