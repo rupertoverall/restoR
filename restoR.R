@@ -1,3 +1,5 @@
+# https://github.com/rupertoverall/restoR/
+
 sep = "/" # Not sure how this is handled in Windows.
 library = .libPaths()
 libpath = strsplit(library, split = sep, perl = T)[[1]]
