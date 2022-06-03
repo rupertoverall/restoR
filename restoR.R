@@ -14,7 +14,7 @@ last.library = paste(last.library, collapse = sep)
 
 previous.packages = installed.packages(lib.loc = last.library)
 required.packages = setdiff(previous.packages[, "Package"], installed.packages()[, "Package"])
-if(!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+if(!require("BiocManager", quietly = TRUE)) install.packages("BiocManager", ask = FALSE)
 for(package in required.packages){
 	print(package)
 	tryCatch({
