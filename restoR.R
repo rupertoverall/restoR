@@ -18,7 +18,7 @@ if(!require("BiocManager", quietly = TRUE)) install.packages("BiocManager", ask 
 for(package in required.packages){
 	print(package)
 	tryCatch({
-		if(!require(package, quietly = TRUE)) BiocManager::install(package)
+		if(!require(package, quietly = TRUE)) BiocManager::install(package, ask = FALSE)
 	}, error = function(cond){
 		install.packages(package)
 		if(!require(package, quietly = TRUE)) message(paste0("Package '", package, "' not installable."))
