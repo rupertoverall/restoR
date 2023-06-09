@@ -4,10 +4,13 @@ sep = "/" # Not sure how this is handled in Windows.
 library = .libPaths()
 libpath = strsplit(library, split = sep, perl = T)[[1]]
 version.index = which(libpath == "Versions") + 1
-this.version = libpath[version.index]
-all.versions = list.files(paste(libpath[1:(version.index - 1)], collapse = sep))
-all.version.numbers = sort(as.numeric(all.versions), decreasing = T)
-last.version = all.version.numbers[which(all.version.numbers < as.numeric(this.version))[1]]
+this.version.number = as.numeric(strsplit(libpath[version.index], "-")[[1]][1]) # MacOS now has platform identifers.
+all.versions = sapply(strsplit(list.files(paste(libpath[1:(version.index - 1)], collapse = sep)), "-"), "[", 1)
+all.version.numbers = suppressWarnings( as.numeric(sapply(strsplit(all.versions, "-"), "[", 1)) )
+all.version.order = order(as.numeric(all.version.numbers), decreasing = T)
+all.versions = all.versions[all.version.order]
+all.version.numbers = all.version.numbers[all.version.order]
+last.version = all.versions[which(all.version.numbers < this.version)[1]]
 last.library = libpath
 last.library[version.index] = last.version
 last.library = paste(last.library, collapse = sep)
