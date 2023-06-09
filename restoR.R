@@ -10,7 +10,7 @@ all.version.numbers = suppressWarnings( as.numeric(sapply(strsplit(all.versions,
 all.version.order = order(as.numeric(all.version.numbers), decreasing = T)
 all.versions = all.versions[all.version.order]
 all.version.numbers = all.version.numbers[all.version.order]
-last.version = all.versions[which(all.version.numbers < this.version)[1]]
+last.version = all.versions[which(all.version.numbers < this.version.number)[1]]
 last.library = libpath
 last.library[version.index] = last.version
 last.library = paste(last.library, collapse = sep)
