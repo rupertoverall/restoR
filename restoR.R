@@ -12,7 +12,10 @@ all.versions = all.versions[all.version.order]
 all.version.numbers = all.version.numbers[all.version.order]
 last.version = all.versions[which(all.version.numbers < this.version.number)[1]]
 last.library = libpath
-last.library[version.index] = last.version
+all.libraries = list.dirs(paste(libpath[1:(version.index - 1)], collapse = sep), recursive = FALSE)
+all.libraries.versions = sapply(all.libraries, function(library) strsplit(library, split = sep, perl = T)[[1]][version.index] )
+last.version.string = all.libraries.versions[which(grepl(last.version, all.libraries.versions))]
+last.library[version.index] = last.version.string
 last.library = paste(last.library, collapse = sep)
 
 previous.packages = installed.packages(lib.loc = last.library)
